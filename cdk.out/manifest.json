@@ -1,0 +1,179 @@
+{
+  "version": "36.0.0",
+  "artifacts": {
+    "ApiStagesLambdaStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "ApiStagesLambdaStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "ApiStagesLambdaStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://465283423899/us-east-1",
+      "properties": {
+        "templateFile": "ApiStagesLambdaStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::465283423899:role/cdk-hnb659fds-deploy-role-465283423899-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::465283423899:role/cdk-hnb659fds-cfn-exec-role-465283423899-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-465283423899-us-east-1/6fc3e701867fcfc8108315410056018f2f5375646c2836a4e2ce5689526d51a0.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "ApiStagesLambdaStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::465283423899:role/cdk-hnb659fds-lookup-role-465283423899-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "ApiStagesLambdaStack.assets"
+      ],
+      "metadata": {
+        "/ApiStagesLambdaStack/LambdaFunction": [
+          {
+            "type": "aws:cdk:warning",
+            "data": "AWS Lambda has changed their authorization strategy, which may cause client invocations using the 'Qualifier' parameter of the lambda function to fail with Access Denied errors.\nIf you are using a lambda Version or Alias, make sure to call 'grantInvoke' or 'addPermission' on the Version or Alias, not the underlying Function\nSee: https://github.com/aws/aws-cdk/issues/19273 [ack: @aws-cdk/aws-lambda:addPermissionsToVersionOrAlias]",
+            "trace": [
+              "Annotations.addMessage (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-G4rnNw/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1608)",
+              "Annotations.addWarningV2 (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-G4rnNw/node_modules/aws-cdk-lib/core/lib/annotations.js:1:825)",
+              "Function.warnInvokeFunctionPermissions (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-G4rnNw/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:1:1489)",
+              "Function.considerWarningOnInvokeFunctionPermissions (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-G4rnNw/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:1:1347)",
+              "Function.addPermission (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-G4rnNw/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:2:979)",
+              "Object.addToResourcePolicy (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-G4rnNw/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:2:5608)",
+              "Function.addToPrincipalOrResource (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-G4rnNw/node_modules/aws-cdk-lib/aws-iam/lib/grant.js:1:1606)",
+              "Function.grant (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-G4rnNw/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:2:5496)",
+              "Function.grantInvoke (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-G4rnNw/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:2:2960)",
+              "/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmp6hl51k4w/lib/program.js:9855:172",
+              "Kernel._Kernel_ensureSync (/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmp6hl51k4w/lib/program.js:10480:24)",
+              "Kernel.invoke (/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmp6hl51k4w/lib/program.js:9855:102)",
+              "KernelHost.processRequest (/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmp6hl51k4w/lib/program.js:11696:36)",
+              "KernelHost.run (/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmp6hl51k4w/lib/program.js:11656:22)",
+              "Immediate._onImmediate (/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmp6hl51k4w/lib/program.js:11657:46)",
+              "process.processImmediate (node:internal/timers:471:21)"
+            ]
+          }
+        ],
+        "/ApiStagesLambdaStack/LambdaFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaFunctionServiceRoleC555A460"
+          }
+        ],
+        "/ApiStagesLambdaStack/LambdaFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaFunctionBF21E41F"
+          }
+        ],
+        "/ApiStagesLambdaStack/LambdaFunction/CurrentVersion/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaFunctionCurrentVersion7D5C86E3ed76d8a60d2b98a86b687250e39e9adf"
+          }
+        ],
+        "/ApiStagesLambdaStack/LambdaFunction/InvokeFcyXBRX02EWa52GlF+ECQiCzDt0fdRUDi4mo4foC5aU=": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "LambdaFunctionInvokeFcyXBRX02EWa52GlFECQiCzDt0fdRUDi4mo4foC5aU6C5D3B33"
+          }
+        ],
+        "/ApiStagesLambdaStack/DeploymentStagesAPI/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeploymentStagesAPI12050DE0"
+          }
+        ],
+        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/stage_info/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeploymentStagesAPIstageinfoCD647400"
+          }
+        ],
+        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/stage_info/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeploymentStagesAPIstageinfoGET663181DB"
+          }
+        ],
+        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/fruits/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeploymentStagesAPIfruitsF790CCBE"
+          }
+        ],
+        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/fruits/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeploymentStagesAPIfruitsGETA0B78F3E"
+          }
+        ],
+        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/vegetables/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeploymentStagesAPIvegetables881EBF31"
+          }
+        ],
+        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/vegetables/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeploymentStagesAPIvegetablesGET800A4CCB"
+          }
+        ],
+        "/ApiStagesLambdaStack/ProdAlias/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ProdAlias90891B14"
+          }
+        ],
+        "/ApiStagesLambdaStack/ProdApiDeployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ProdApiDeploymentE87EEE6D9d007f9f5123c998536f2a509fd8ac17"
+          }
+        ],
+        "/ApiStagesLambdaStack/ProdApiStage/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ProdApiStageBA1DB1C1"
+          }
+        ],
+        "/ApiStagesLambdaStack/ApiHostUrl": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiHostUrl"
+          }
+        ],
+        "/ApiStagesLambdaStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/ApiStagesLambdaStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/ApiStagesLambdaStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "ApiStagesLambdaStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}
