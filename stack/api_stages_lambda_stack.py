@@ -3,7 +3,9 @@ from aws_cdk import (
     aws_apigateway as apigw,
     aws_lambda as _lambda,
     aws_iam as iam,
-    Aws, CfnOutput
+    Aws, CfnOutput,
+    aws_cognito as cognito
+  
 )
 from constructs import Construct
 
@@ -19,6 +21,14 @@ class ApiStagesLambdaStack(Stack):
             code=_lambda.Code.from_asset("lambda")
         )
         version = function.current_version
+        pool = cognito.UserPool(self, "Pool", self_sign_up_enabled=True)
+        pool.add_client("abcclient", auth_flows=cognito.AuthFlow(
+        user_password=True,
+        user_srp=True,
+        admin_user_password=True
+    )
+
+)
 
         # Define the REST API
         api = apigw.RestApi(self, "DeploymentStagesAPI",
