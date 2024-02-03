@@ -6,26 +6,6 @@ import click
 from stack.api_stages_lambda_stack import ApiStagesLambdaStack
 
 
-app = cdk.App()
-ApiStagesLambdaStack(app, "ApiStagesLambdaStack",
-    # If you don't specify 'env', this stack will be environment-agnostic.
-    # Account/Region-dependent features and context lookups will not work,
-    # but a single synthesized template can be deployed anywhere.
-
-    # Uncomment the next line to specialize this stack for the AWS Account
-    # and Region that are implied by the current CLI configuration.
-
-    #env=cdk.Environment(account=os.getenv('CDK_DEFAULT_ACCOUNT'), region=os.getenv('CDK_DEFAULT_REGION')),
-
-    # Uncomment the next line if you know exactly what Account and Region you
-    # want to deploy the stack to. */
-
-    env=cdk.Environment(account='465283423899', region='us-east-1'),
-
-    # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
-    )
-
-# app.synth()
 client = boto3.client('cognito-idp')
 def create_user(username,password):
     
@@ -92,6 +72,8 @@ def main(endpoint, username,password,c):
         confirm_signup(username)
         login(username,password)
     print("Done")
+    print(user_pool_id)
+    print(client_id)
     #To make actual requesst here
 
 if __name__ == '__main__':

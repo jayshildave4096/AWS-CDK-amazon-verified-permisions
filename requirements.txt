@@ -3,3 +3,4 @@ constructs>=10.0.0,<11.0.0
 types-setuptools
 boto3
 click
+python-jose

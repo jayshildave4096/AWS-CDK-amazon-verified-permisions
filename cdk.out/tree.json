@@ -103,7 +103,7 @@
                   "aws:cdk:cloudformation:props": {
                     "code": {
                       "s3Bucket": "cdk-hnb659fds-assets-465283423899-us-east-1",
-                      "s3Key": "f22d4ac2cf86860ebbb0d2f7310d3137881245c0968f756e8d984a3fee7d7c93.zip"
+                      "s3Key": "36f27bb5b67040031bc475d63029ad2f31ea3e00901ee4cf7a64f6a3d3ed5d4f.zip"
                     },
                     "handler": "lambda-handler.handler",
                     "role": {
@@ -170,6 +170,103 @@
             },
             "constructInfo": {
               "fqn": "aws-cdk-lib.aws_lambda.Function",
+              "version": "2.124.0"
+            }
+          },
+          "Pool": {
+            "id": "Pool",
+            "path": "ApiStagesLambdaStack/Pool",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "ApiStagesLambdaStack/Pool/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Cognito::UserPool",
+                  "aws:cdk:cloudformation:props": {
+                    "accountRecoverySetting": {
+                      "recoveryMechanisms": [
+                        {
+                          "name": "verified_phone_number",
+                          "priority": 1
+                        },
+                        {
+                          "name": "verified_email",
+                          "priority": 2
+                        }
+                      ]
+                    },
+                    "adminCreateUserConfig": {
+                      "allowAdminCreateUserOnly": false
+                    },
+                    "emailVerificationMessage": "The verification code to your new account is {####}",
+                    "emailVerificationSubject": "Verify your new account",
+                    "smsVerificationMessage": "The verification code to your new account is {####}",
+                    "verificationMessageTemplate": {
+                      "defaultEmailOption": "CONFIRM_WITH_CODE",
+                      "emailMessage": "The verification code to your new account is {####}",
+                      "emailSubject": "Verify your new account",
+                      "smsMessage": "The verification code to your new account is {####}"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cognito.CfnUserPool",
+                  "version": "2.124.0"
+                }
+              },
+              "abcclient": {
+                "id": "abcclient",
+                "path": "ApiStagesLambdaStack/Pool/abcclient",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "ApiStagesLambdaStack/Pool/abcclient/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Cognito::UserPoolClient",
+                      "aws:cdk:cloudformation:props": {
+                        "allowedOAuthFlows": [
+                          "implicit",
+                          "code"
+                        ],
+                        "allowedOAuthFlowsUserPoolClient": true,
+                        "allowedOAuthScopes": [
+                          "profile",
+                          "phone",
+                          "email",
+                          "openid",
+                          "aws.cognito.signin.user.admin"
+                        ],
+                        "callbackUrLs": [
+                          "https://example.com"
+                        ],
+                        "explicitAuthFlows": [
+                          "ALLOW_USER_PASSWORD_AUTH",
+                          "ALLOW_ADMIN_USER_PASSWORD_AUTH",
+                          "ALLOW_USER_SRP_AUTH",
+                          "ALLOW_REFRESH_TOKEN_AUTH"
+                        ],
+                        "supportedIdentityProviders": [
+                          "COGNITO"
+                        ],
+                        "userPoolId": {
+                          "Ref": "PoolD3F588B8"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_cognito.CfnUserPoolClient",
+                      "version": "2.124.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cognito.UserPoolClient",
+                  "version": "2.124.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cognito.UserPool",
               "version": "2.124.0"
             }
           },
@@ -483,7 +580,7 @@
                     },
                     "functionVersion": {
                       "Fn::GetAtt": [
-                        "LambdaFunctionCurrentVersion7D5C86E3ed76d8a60d2b98a86b687250e39e9adf",
+                        "LambdaFunctionCurrentVersion7D5C86E3ad53e1f78a279144eb9b2225a4d663c7",
                         "Version"
                       ]
                     },
@@ -565,6 +662,22 @@
             },
             "constructInfo": {
               "fqn": "aws-cdk-lib.aws_apigateway.Stage",
+              "version": "2.124.0"
+            }
+          },
+          "MyCfnPolicyStore": {
+            "id": "MyCfnPolicyStore",
+            "path": "ApiStagesLambdaStack/MyCfnPolicyStore",
+            "attributes": {
+              "aws:cdk:cloudformation:type": "AWS::VerifiedPermissions::PolicyStore",
+              "aws:cdk:cloudformation:props": {
+                "validationSettings": {
+                  "mode": "OFF"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_verifiedpermissions.CfnPolicyStore",
               "version": "2.124.0"
             }
           },

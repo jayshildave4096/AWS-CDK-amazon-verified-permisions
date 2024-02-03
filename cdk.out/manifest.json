@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::465283423899:role/cdk-hnb659fds-deploy-role-465283423899-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::465283423899:role/cdk-hnb659fds-cfn-exec-role-465283423899-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-465283423899-us-east-1/6fc3e701867fcfc8108315410056018f2f5375646c2836a4e2ce5689526d51a0.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-465283423899-us-east-1/83c9c99020d11978c843744b2417aea38367776bccd1a30a631ea54cb0c37d97.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -39,21 +39,21 @@
             "type": "aws:cdk:warning",
             "data": "AWS Lambda has changed their authorization strategy, which may cause client invocations using the 'Qualifier' parameter of the lambda function to fail with Access Denied errors.\nIf you are using a lambda Version or Alias, make sure to call 'grantInvoke' or 'addPermission' on the Version or Alias, not the underlying Function\nSee: https://github.com/aws/aws-cdk/issues/19273 [ack: @aws-cdk/aws-lambda:addPermissionsToVersionOrAlias]",
             "trace": [
-              "Annotations.addMessage (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-G4rnNw/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1608)",
-              "Annotations.addWarningV2 (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-G4rnNw/node_modules/aws-cdk-lib/core/lib/annotations.js:1:825)",
-              "Function.warnInvokeFunctionPermissions (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-G4rnNw/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:1:1489)",
-              "Function.considerWarningOnInvokeFunctionPermissions (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-G4rnNw/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:1:1347)",
-              "Function.addPermission (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-G4rnNw/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:2:979)",
-              "Object.addToResourcePolicy (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-G4rnNw/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:2:5608)",
-              "Function.addToPrincipalOrResource (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-G4rnNw/node_modules/aws-cdk-lib/aws-iam/lib/grant.js:1:1606)",
-              "Function.grant (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-G4rnNw/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:2:5496)",
-              "Function.grantInvoke (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-G4rnNw/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:2:2960)",
-              "/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmp6hl51k4w/lib/program.js:9855:172",
-              "Kernel._Kernel_ensureSync (/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmp6hl51k4w/lib/program.js:10480:24)",
-              "Kernel.invoke (/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmp6hl51k4w/lib/program.js:9855:102)",
-              "KernelHost.processRequest (/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmp6hl51k4w/lib/program.js:11696:36)",
-              "KernelHost.run (/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmp6hl51k4w/lib/program.js:11656:22)",
-              "Immediate._onImmediate (/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmp6hl51k4w/lib/program.js:11657:46)",
+              "Annotations.addMessage (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-v1DroN/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1608)",
+              "Annotations.addWarningV2 (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-v1DroN/node_modules/aws-cdk-lib/core/lib/annotations.js:1:825)",
+              "Function.warnInvokeFunctionPermissions (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-v1DroN/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:1:1489)",
+              "Function.considerWarningOnInvokeFunctionPermissions (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-v1DroN/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:1:1347)",
+              "Function.addPermission (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-v1DroN/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:2:979)",
+              "Object.addToResourcePolicy (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-v1DroN/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:2:5608)",
+              "Function.addToPrincipalOrResource (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-v1DroN/node_modules/aws-cdk-lib/aws-iam/lib/grant.js:1:1606)",
+              "Function.grant (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-v1DroN/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:2:5496)",
+              "Function.grantInvoke (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-v1DroN/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:2:2960)",
+              "/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmpug91np9u/lib/program.js:9855:172",
+              "Kernel._Kernel_ensureSync (/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmpug91np9u/lib/program.js:10480:24)",
+              "Kernel.invoke (/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmpug91np9u/lib/program.js:9855:102)",
+              "KernelHost.processRequest (/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmpug91np9u/lib/program.js:11696:36)",
+              "KernelHost.run (/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmpug91np9u/lib/program.js:11656:22)",
+              "Immediate._onImmediate (/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmpug91np9u/lib/program.js:11657:46)",
               "process.processImmediate (node:internal/timers:471:21)"
             ]
           }
@@ -73,13 +73,25 @@
         "/ApiStagesLambdaStack/LambdaFunction/CurrentVersion/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "LambdaFunctionCurrentVersion7D5C86E3ed76d8a60d2b98a86b687250e39e9adf"
+            "data": "LambdaFunctionCurrentVersion7D5C86E3ad53e1f78a279144eb9b2225a4d663c7"
           }
         ],
         "/ApiStagesLambdaStack/LambdaFunction/InvokeFcyXBRX02EWa52GlF+ECQiCzDt0fdRUDi4mo4foC5aU=": [
           {
             "type": "aws:cdk:logicalId",
             "data": "LambdaFunctionInvokeFcyXBRX02EWa52GlFECQiCzDt0fdRUDi4mo4foC5aU6C5D3B33"
+          }
+        ],
+        "/ApiStagesLambdaStack/Pool/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PoolD3F588B8"
+          }
+        ],
+        "/ApiStagesLambdaStack/Pool/abcclient/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Poolabcclient5C6D273F"
           }
         ],
         "/ApiStagesLambdaStack/DeploymentStagesAPI/Resource": [
@@ -140,6 +152,12 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "ProdApiStageBA1DB1C1"
+          }
+        ],
+        "/ApiStagesLambdaStack/MyCfnPolicyStore": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyCfnPolicyStore"
           }
         ],
         "/ApiStagesLambdaStack/ApiHostUrl": [

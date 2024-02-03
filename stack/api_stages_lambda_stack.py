@@ -4,8 +4,9 @@ from aws_cdk import (
     aws_lambda as _lambda,
     aws_iam as iam,
     Aws, CfnOutput,
-    aws_cognito as cognito
-  
+    aws_cognito as cognito,
+    aws_verifiedpermissions as verifiedpermissions
+    
 )
 from constructs import Construct
 
@@ -89,6 +90,19 @@ class ApiStagesLambdaStack(Stack):
 
         
         function.grant_invoke(iam.ServicePrincipal('apigateway.amazonaws.com'))
+
+
+        cfn_policy_store = verifiedpermissions.CfnPolicyStore(self, "MyCfnPolicyStore",
+            validation_settings=verifiedpermissions.CfnPolicyStore.ValidationSettingsProperty(
+                mode="OFF"
+            ),
+
+            # the properties below are optional
+            # description="description",
+            # schema=verifiedpermissions.CfnPolicyStore.SchemaDefinitionProperty(
+            #     cedar_json="cedarJson"
+            # )
+        )
 
         # Define Dev specific resources
         # dev_alias = _lambda.Alias(self, "DevAlias",
