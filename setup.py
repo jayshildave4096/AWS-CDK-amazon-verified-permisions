@@ -13,7 +13,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
 
-    author="Kim Wendt",
+    
 
     package_dir={"": "api_stages_lambda"},
     packages=setuptools.find_packages(where="api_stages_lambda"),

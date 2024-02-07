@@ -9,6 +9,7 @@ from aws_cdk import (
     
 )
 from constructs import Construct
+import json
 
 class ApiStagesLambdaStack(Stack):
 
@@ -91,18 +92,29 @@ class ApiStagesLambdaStack(Stack):
         
         function.grant_invoke(iam.ServicePrincipal('apigateway.amazonaws.com'))
 
+        with open("/Users/dave/Desktop/AWS/APP/schema.json") as file:
+            cfn_policy_store = verifiedpermissions.CfnPolicyStore(self, "MyCfnPolicyStore",
+                validation_settings=verifiedpermissions.CfnPolicyStore.ValidationSettingsProperty(
+                    mode="STRICT"
+                ),
+                description="MyPolicyStore",
+                schema=verifiedpermissions.CfnPolicyStore.SchemaDefinitionProperty(
+                cedar_json=json.dumps(json.loads(file.read()))
+                )
 
-        cfn_policy_store = verifiedpermissions.CfnPolicyStore(self, "MyCfnPolicyStore",
-            validation_settings=verifiedpermissions.CfnPolicyStore.ValidationSettingsProperty(
-                mode="OFF"
-            ),
+            )
+        print(cfn_policy_store.attr_policy_store_id)  
 
-            # the properties below are optional
-            # description="description",
-            # schema=verifiedpermissions.CfnPolicyStore.SchemaDefinitionProperty(
-            #     cedar_json="cedarJson"
-            # )
-        )
+        with open("/Users/dave/Desktop/AWS/APP/policy_template.cedar") as policy_template_file:      
+            cfn_policy_template = verifiedpermissions.CfnPolicyTemplate(self, "MyCfnPolicyTemplate",
+                statement=policy_template_file.read(),
+
+                # the properties below are optional
+                description="description",
+                policy_store_id=str(cfn_policy_store.attr_policy_store_id)
+            )
+
+        
 
         # Define Dev specific resources
         # dev_alias = _lambda.Alias(self, "DevAlias",
