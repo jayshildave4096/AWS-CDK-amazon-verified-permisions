@@ -61,7 +61,8 @@ def lambda_handler(event, context):
     userpool_id = event['userpool_id']
     app_client_id = event['client_id']
 
-    verify_token(token,userpool_id, app_client_id)
+    result = verify_token(token,userpool_id, app_client_id)
+    print(result)
 
     #AVP verification 
 

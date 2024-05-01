@@ -1,0 +1,109 @@
+{
+    "MyPolicyStore": {
+        "entityTypes": {
+            "Application": {
+                "shape": {
+                    "type": "Record",
+                    "attributes": {}
+                },
+                "memberOfTypes": []
+            },
+            "Fruits": {
+                "shape": {
+                    "attributes": {
+                        "owner": {
+                            "type": "Entity",
+                            "name": "User",
+                            "required": true
+                        }
+                    },
+                    "type": "Record"
+                },
+                "memberOfTypes": []
+            },
+            "UserGroup": {
+                "shape": {
+                    "type": "Record",
+                    "attributes": {}
+                }
+            },
+            "User": {
+                "memberOfTypes": ["UserGroup"],
+                "shape": {
+                    "attributes": {},
+                    "type": "Record"
+                }
+            },
+            "Vegetables": {
+                "shape": {
+                    "type": "Record",
+                    "attributes": {
+                        "owner": {
+                            "required": true,
+                            "name": "User",
+                            "type": "Entity"
+                        }
+                    }
+                },
+                "memberOfTypes": []
+            }
+        },
+        "actions": {
+            "GetVegetables": {
+                "appliesTo": {
+                    "principalTypes": [
+                        "User",
+                        "UserGroup"
+                    ],
+                    "resourceTypes": [
+                        "Vegetables"
+                    ]
+                }
+            },
+            "DeleteVegetables": {
+                "appliesTo": {
+                    "resourceTypes": [
+                        "Vegetables"
+                    ],
+                    "principalTypes": [
+                        "User",
+                        "UserGroup"
+                    ]
+                }
+            },
+            "CreateFruit": {
+                "appliesTo": {
+                    "principalTypes": [
+                        "User",
+                        "UserGroup"
+                    ],
+                    "resourceTypes": [
+                        "Fruits"
+                    ]
+                }
+            },
+            "DeleteFruit": {
+                "appliesTo": {
+                    "resourceTypes": [
+                        "Fruits"
+                    ],
+                    "principalTypes": [
+                        "User",
+                        "UserGroup"
+                    ]
+                }
+            },
+            "GetFruits": {
+                "appliesTo": {
+                    "resourceTypes": [
+                        "Fruits"
+                    ],
+                    "principalTypes": [
+                        "User",
+                        "UserGroup"
+                    ]
+                }
+            }
+        }
+    }
+}

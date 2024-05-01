@@ -4,6 +4,7 @@ import boto3
 import aws_cdk as cdk
 import click
 from stack.api_stages_lambda_stack import ApiStagesLambdaStack
+from stack.avp_stack import AVPStack
 
 
 app = cdk.App()
@@ -21,8 +22,7 @@ ApiStagesLambdaStack(app, "ApiStagesLambdaStack",
     # want to deploy the stack to. */
 
     env=cdk.Environment(account='465283423899', region='us-east-1'),
-
-    # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
-    )
+)
+AVPStack(app,"AVPStack",env=cdk.Environment(account='465283423899', region='us-east-1'),)
 
 app.synth()
