@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::465283423899:role/cdk-hnb659fds-deploy-role-465283423899-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::465283423899:role/cdk-hnb659fds-cfn-exec-role-465283423899-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-465283423899-us-east-1/83c9c99020d11978c843744b2417aea38367776bccd1a30a631ea54cb0c37d97.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-465283423899-us-east-1/34db048b4e1aff7640069dd71bc9123b34ece27a943ae2b38dd090078f5beb34.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -34,30 +34,6 @@
         "ApiStagesLambdaStack.assets"
       ],
       "metadata": {
-        "/ApiStagesLambdaStack/LambdaFunction": [
-          {
-            "type": "aws:cdk:warning",
-            "data": "AWS Lambda has changed their authorization strategy, which may cause client invocations using the 'Qualifier' parameter of the lambda function to fail with Access Denied errors.\nIf you are using a lambda Version or Alias, make sure to call 'grantInvoke' or 'addPermission' on the Version or Alias, not the underlying Function\nSee: https://github.com/aws/aws-cdk/issues/19273 [ack: @aws-cdk/aws-lambda:addPermissionsToVersionOrAlias]",
-            "trace": [
-              "Annotations.addMessage (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-v1DroN/node_modules/aws-cdk-lib/core/lib/annotations.js:1:1608)",
-              "Annotations.addWarningV2 (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-v1DroN/node_modules/aws-cdk-lib/core/lib/annotations.js:1:825)",
-              "Function.warnInvokeFunctionPermissions (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-v1DroN/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:1:1489)",
-              "Function.considerWarningOnInvokeFunctionPermissions (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-v1DroN/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:1:1347)",
-              "Function.addPermission (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-v1DroN/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:2:979)",
-              "Object.addToResourcePolicy (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-v1DroN/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:2:5608)",
-              "Function.addToPrincipalOrResource (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-v1DroN/node_modules/aws-cdk-lib/aws-iam/lib/grant.js:1:1606)",
-              "Function.grant (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-v1DroN/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:2:5496)",
-              "Function.grantInvoke (/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/jsii-kernel-v1DroN/node_modules/aws-cdk-lib/aws-lambda/lib/function-base.js:2:2960)",
-              "/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmpug91np9u/lib/program.js:9855:172",
-              "Kernel._Kernel_ensureSync (/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmpug91np9u/lib/program.js:10480:24)",
-              "Kernel.invoke (/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmpug91np9u/lib/program.js:9855:102)",
-              "KernelHost.processRequest (/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmpug91np9u/lib/program.js:11696:36)",
-              "KernelHost.run (/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmpug91np9u/lib/program.js:11656:22)",
-              "Immediate._onImmediate (/private/var/folders/pp/8tl5ysgs20j0nk6f_q6c4pym0000gn/T/tmpug91np9u/lib/program.js:11657:46)",
-              "process.processImmediate (node:internal/timers:471:21)"
-            ]
-          }
-        ],
         "/ApiStagesLambdaStack/LambdaFunction/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
@@ -70,28 +46,46 @@
             "data": "LambdaFunctionBF21E41F"
           }
         ],
-        "/ApiStagesLambdaStack/LambdaFunction/CurrentVersion/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "LambdaFunctionCurrentVersion7D5C86E3ad53e1f78a279144eb9b2225a4d663c7"
-          }
-        ],
         "/ApiStagesLambdaStack/LambdaFunction/InvokeFcyXBRX02EWa52GlF+ECQiCzDt0fdRUDi4mo4foC5aU=": [
           {
             "type": "aws:cdk:logicalId",
             "data": "LambdaFunctionInvokeFcyXBRX02EWa52GlFECQiCzDt0fdRUDi4mo4foC5aU6C5D3B33"
           }
         ],
-        "/ApiStagesLambdaStack/Pool/Resource": [
+        "/ApiStagesLambdaStack/AuthLambdaFunction/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "PoolD3F588B8"
+            "data": "AuthLambdaFunctionServiceRole53C2C292"
           }
         ],
-        "/ApiStagesLambdaStack/Pool/abcclient/Resource": [
+        "/ApiStagesLambdaStack/AuthLambdaFunction/ServiceRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "Poolabcclient5C6D273F"
+            "data": "AuthLambdaFunctionServiceRoleDefaultPolicy3540BCF7"
+          }
+        ],
+        "/ApiStagesLambdaStack/AuthLambdaFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdaFunctionEB7081E8"
+          }
+        ],
+        "/ApiStagesLambdaStack/AuthLambdaFunction/InvokeFcyXBRX02EWa52GlF+ECQiCzDt0fdRUDi4mo4foC5aU=": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdaFunctionInvokeFcyXBRX02EWa52GlFECQiCzDt0fdRUDi4mo4foC5aUB003517C"
+          }
+        ],
+        "/ApiStagesLambdaStack/Demo-User-Pool-2604/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoUserPool2604FF82200D"
+          }
+        ],
+        "/ApiStagesLambdaStack/Demo-User-Pool-2604/democlient/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DemoUserPool2604democlient10CA1683"
           }
         ],
         "/ApiStagesLambdaStack/DeploymentStagesAPI/Resource": [
@@ -100,46 +94,76 @@
             "data": "DeploymentStagesAPI12050DE0"
           }
         ],
-        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/stage_info/Resource": [
+        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/auth/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeploymentStagesAPIstageinfoCD647400"
+            "data": "DeploymentStagesAPIauth07F63AF9"
           }
         ],
-        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/stage_info/GET/Resource": [
+        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/auth/GET/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeploymentStagesAPIstageinfoGET663181DB"
+            "data": "DeploymentStagesAPIauthGET83F4C61A"
           }
         ],
-        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/fruits/Resource": [
+        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/photo/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeploymentStagesAPIfruitsF790CCBE"
+            "data": "DeploymentStagesAPIphoto3930DBFC"
           }
         ],
-        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/fruits/GET/Resource": [
+        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/photo/GET/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeploymentStagesAPIfruitsGETA0B78F3E"
+            "data": "DeploymentStagesAPIphotoGET2376262A"
           }
         ],
-        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/vegetables/Resource": [
+        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/photo/POST/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeploymentStagesAPIvegetables881EBF31"
+            "data": "DeploymentStagesAPIphotoPOSTAEDF2D1E"
           }
         ],
-        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/vegetables/GET/Resource": [
+        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/photo/PATCH/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeploymentStagesAPIvegetablesGET800A4CCB"
+            "data": "DeploymentStagesAPIphotoPATCHA3F46AB2"
           }
         ],
-        "/ApiStagesLambdaStack/ProdAlias/Resource": [
+        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/photo/DELETE/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "ProdAlias90891B14"
+            "data": "DeploymentStagesAPIphotoDELETED9295E7A"
+          }
+        ],
+        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/friends/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeploymentStagesAPIfriends65F24EF4"
+          }
+        ],
+        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/friends/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeploymentStagesAPIfriendsGET22BEAB61"
+          }
+        ],
+        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/friend/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeploymentStagesAPIfriend67204F00"
+          }
+        ],
+        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/friend/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeploymentStagesAPIfriendPOST91D95051"
+          }
+        ],
+        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/friend/DELETE/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeploymentStagesAPIfriendDELETE0D0C4C92"
           }
         ],
         "/ApiStagesLambdaStack/ProdApiDeployment/Resource": [
@@ -154,16 +178,22 @@
             "data": "ProdApiStageBA1DB1C1"
           }
         ],
-        "/ApiStagesLambdaStack/MyCfnPolicyStore": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "MyCfnPolicyStore"
-          }
-        ],
         "/ApiStagesLambdaStack/ApiHostUrl": [
           {
             "type": "aws:cdk:logicalId",
             "data": "ApiHostUrl"
+          }
+        ],
+        "/ApiStagesLambdaStack/UserPoolId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserPoolId"
+          }
+        ],
+        "/ApiStagesLambdaStack/UserPoolClientId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserPoolClientId"
           }
         ],
         "/ApiStagesLambdaStack/CDKMetadata/Default": [
@@ -186,6 +216,90 @@
         ]
       },
       "displayName": "ApiStagesLambdaStack"
+    },
+    "AVPStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "AVPStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "AVPStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://465283423899/us-east-1",
+      "properties": {
+        "templateFile": "AVPStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::465283423899:role/cdk-hnb659fds-deploy-role-465283423899-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::465283423899:role/cdk-hnb659fds-cfn-exec-role-465283423899-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-465283423899-us-east-1/25563a4021715c5b80f882678bb89138f62d84bbd04f499ab8b93a4000a0eef5.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "AVPStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::465283423899:role/cdk-hnb659fds-lookup-role-465283423899-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "AVPStack.assets"
+      ],
+      "metadata": {
+        "/AVPStack/MyPolicyStore": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyPolicyStore"
+          }
+        ],
+        "/AVPStack/MyCfnPolicyTemplate": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyCfnPolicyTemplate"
+          }
+        ],
+        "/AVPStack/AdminPolicy": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AdminPolicy"
+          }
+        ],
+        "/AVPStack/DeletePhotoPolicy": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeletePhotoPolicy"
+          }
+        ],
+        "/AVPStack/PolicyStoreId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PolicyStoreId"
+          }
+        ],
+        "/AVPStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/AVPStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/AVPStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "AVPStack"
     },
     "Tree": {
       "type": "cdk:tree",

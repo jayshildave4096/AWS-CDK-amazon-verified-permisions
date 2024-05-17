@@ -120,13 +120,7 @@
             "Photo": {
                 "shape": {
                     "type": "Record",
-                    "attributes": {
-                        "root_user": {
-                            "required": true,
-                            "type": "Entity",
-                            "name": "User"
-                        }
-                    }
+                    "attributes": {}
                 },
                 "memberOfTypes": [
                     "User"

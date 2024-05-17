@@ -43,7 +43,7 @@ def login(username,password):
         }
     )
     # TODO: return ID Token
-    print(resp)
+    print(resp['AuthenticationResult']['IdToken'])
 
     
 
@@ -52,28 +52,30 @@ def login(username,password):
 @click.option('--endpoint',  help='API Endpoint')
 @click.option('--username',  help='Username')
 @click.option('--password',  help='password')
+@click.option('--uid',  help='uid')
+@click.option('--cid',  help='cid')
 @click.option('--c',type=bool,  help='option')
-def main(endpoint, username,password,c):
+def main(endpoint, username,password, uid, cid,c):
     response = client.list_user_pools(
         MaxResults=10
     )
-    user_pool_id = response['UserPools'][0]['Id']
-    os.environ['USER_POOL_ID']=user_pool_id
+    # user_pool_id = response['UserPools'][0]['Id']
+    os.environ['USER_POOL_ID']='us-east-1_aGGF5og07'
 
-    response = client.list_user_pool_clients(
-       UserPoolId=user_pool_id
-    )
+    # response = client.list_user_pool_clients(
+    #    UserPoolId=user_pool_id
+    # )
 
-    client_id = response['UserPoolClients'][0]['ClientId']
-    os.environ['CLIENT_ID']=client_id
-    print(create_user)
+    # client_id = response['UserPoolClients'][0]['ClientId']
+    os.environ['CLIENT_ID']='2p6jqeaflpcegq55k8ra3kikbo'
+
     if c:
         create_user(username,password)
         confirm_signup(username)
-        login(username,password)
+    login(username,password)
     print("Done")
-    print(user_pool_id)
-    print(client_id)
+    print('us-east-1_aGGF5og07')
+    print('2p6jqeaflpcegq55k8ra3kikbo')
     #To make actual requesst here
 
 if __name__ == '__main__':

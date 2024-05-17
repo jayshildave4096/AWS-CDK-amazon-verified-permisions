@@ -5,7 +5,8 @@ from aws_cdk import (
     aws_iam as iam,
     Aws, CfnOutput,
     aws_cognito as cognito,
-    aws_verifiedpermissions as verifiedpermissions
+    aws_verifiedpermissions as verifiedpermissions,
+    BundlingOptions
     
 )
 from constructs import Construct
@@ -18,11 +19,32 @@ class ApiStagesLambdaStack(Stack):
 
         # Define AWS Lambda function and aliases
         function = _lambda.Function(self, "LambdaFunction",
-            runtime=_lambda.Runtime.PYTHON_3_8,
+            runtime=_lambda.Runtime.PYTHON_3_9,
             handler="lambda-handler.handler",
             code=_lambda.Code.from_asset("lambda")
         )
 
+         # Define AWS Lambda function and aliases
+        auth_function = _lambda.Function(self, "AuthLambdaFunction",
+            runtime=_lambda.Runtime.PYTHON_3_9,
+            handler="auth-lambda-handler.handler",
+            initial_policy=[iam.PolicyStatement(
+                actions=["verifiedpermissions:*"],
+                effect=iam.Effect.ALLOW,
+                resources=["*"]
+            )],
+            code=_lambda.Code.from_asset(
+                "auth_lambda",
+                bundling=BundlingOptions(
+                    image=_lambda.Runtime.PYTHON_3_9.bundling_image,
+                    command=[
+                        "bash",
+                        "-c",
+                        "pip install --no-cache -r requirements.txt -t /asset-output && cp -au . /asset-output"
+                    ],
+                ),
+            ),
+        )
 
         userpool = cognito.UserPool(self, "Demo-User-Pool-2604", self_sign_up_enabled=True)
         userpool_client = userpool.add_client("democlient", auth_flows=cognito.AuthFlow(
@@ -38,14 +60,14 @@ class ApiStagesLambdaStack(Stack):
         )
 
         # Define GET method for /stage_info
-        stage_info_resource = api.root.add_resource("stage_info")
+        stage_info_resource = api.root.add_resource("auth")
         stage_info_get_method = stage_info_resource.add_method("GET",
             authorization_type=apigw.AuthorizationType.IAM,
             integration=apigw.AwsIntegration(
                 service="lambda",
                 region=Aws.REGION,
                 proxy=True,
-                path=f"2015-03-31/functions/{function.function_arn}/invocations"
+                path=f"2015-03-31/functions/{auth_function.function_arn}/invocations"
             )
         )
         
@@ -138,6 +160,8 @@ class ApiStagesLambdaStack(Stack):
         )
         
         function.grant_invoke(iam.ServicePrincipal('apigateway.amazonaws.com'))
+        auth_function.grant_invoke(iam.ServicePrincipal('apigateway.amazonaws.com'))
+        
 
 
         # Define Test specific resources 

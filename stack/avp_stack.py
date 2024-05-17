@@ -39,8 +39,8 @@ class AVPStack(Stack):
 
                     # # the properties below are optional
                     principal=verifiedpermissions.CfnPolicy.EntityIdentifierProperty(
-                        entity_id="admin",
-                        entity_type="MyPolicyStore::UserGroup"
+                        entity_id="jayshil",
+                        entity_type="MyPolicyStore::User"
                     ),
                     resource=verifiedpermissions.CfnPolicy.EntityIdentifierProperty(
                         entity_id="sunset.jpg",

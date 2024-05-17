@@ -4,6 +4,5 @@ permit(
     resource
 )
 when {
-    resource.root_user == principal ||
     principal in MyPolicyStore::UserGroup::"admin"
 };

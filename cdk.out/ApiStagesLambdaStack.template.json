@@ -39,7 +39,7 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-465283423899-us-east-1",
-     "S3Key": "36f27bb5b67040031bc475d63029ad2f31ea3e00901ee4cf7a64f6a3d3ed5d4f.zip"
+     "S3Key": "4d61be4d0fd2bcd174d120a3d084383c48343c07287e2171f588f05aac66c307.zip"
     },
     "Handler": "lambda-handler.handler",
     "Role": {
@@ -48,27 +48,16 @@
       "Arn"
      ]
     },
-    "Runtime": "python3.8"
+    "Runtime": "python3.9"
    },
    "DependsOn": [
     "LambdaFunctionServiceRoleC555A460"
    ],
    "Metadata": {
     "aws:cdk:path": "ApiStagesLambdaStack/LambdaFunction/Resource",
-    "aws:asset:path": "asset.36f27bb5b67040031bc475d63029ad2f31ea3e00901ee4cf7a64f6a3d3ed5d4f",
+    "aws:asset:path": "asset.4d61be4d0fd2bcd174d120a3d084383c48343c07287e2171f588f05aac66c307",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Code"
-   }
-  },
-  "LambdaFunctionCurrentVersion7D5C86E3ad53e1f78a279144eb9b2225a4d663c7": {
-   "Type": "AWS::Lambda::Version",
-   "Properties": {
-    "FunctionName": {
-     "Ref": "LambdaFunctionBF21E41F"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/LambdaFunction/CurrentVersion/Resource"
    }
   },
   "LambdaFunctionInvokeFcyXBRX02EWa52GlFECQiCzDt0fdRUDi4mo4foC5aU6C5D3B33": {
@@ -87,7 +76,108 @@
     "aws:cdk:path": "ApiStagesLambdaStack/LambdaFunction/InvokeFcyXBRX02EWa52GlF+ECQiCzDt0fdRUDi4mo4foC5aU="
    }
   },
-  "PoolD3F588B8": {
+  "AuthLambdaFunctionServiceRole53C2C292": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ApiStagesLambdaStack/AuthLambdaFunction/ServiceRole/Resource"
+   }
+  },
+  "AuthLambdaFunctionServiceRoleDefaultPolicy3540BCF7": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "verifiedpermissions:*",
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "AuthLambdaFunctionServiceRoleDefaultPolicy3540BCF7",
+    "Roles": [
+     {
+      "Ref": "AuthLambdaFunctionServiceRole53C2C292"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "ApiStagesLambdaStack/AuthLambdaFunction/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "AuthLambdaFunctionEB7081E8": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-465283423899-us-east-1",
+     "S3Key": "564edfe3ac1705f906cbbc68f9a4bec3fe70f8d6aa8a893784156243894e050b.zip"
+    },
+    "Handler": "auth-lambda-handler.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "AuthLambdaFunctionServiceRole53C2C292",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.9"
+   },
+   "DependsOn": [
+    "AuthLambdaFunctionServiceRoleDefaultPolicy3540BCF7",
+    "AuthLambdaFunctionServiceRole53C2C292"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "ApiStagesLambdaStack/AuthLambdaFunction/Resource",
+    "aws:asset:path": "asset.564edfe3ac1705f906cbbc68f9a4bec3fe70f8d6aa8a893784156243894e050b",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "AuthLambdaFunctionInvokeFcyXBRX02EWa52GlFECQiCzDt0fdRUDi4mo4foC5aUB003517C": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthLambdaFunctionEB7081E8",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com"
+   },
+   "Metadata": {
+    "aws:cdk:path": "ApiStagesLambdaStack/AuthLambdaFunction/InvokeFcyXBRX02EWa52GlF+ECQiCzDt0fdRUDi4mo4foC5aU="
+   }
+  },
+  "DemoUserPool2604FF82200D": {
    "Type": "AWS::Cognito::UserPool",
    "Properties": {
     "AccountRecoverySetting": {
@@ -118,10 +208,10 @@
    "UpdateReplacePolicy": "Retain",
    "DeletionPolicy": "Retain",
    "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/Pool/Resource"
+    "aws:cdk:path": "ApiStagesLambdaStack/Demo-User-Pool-2604/Resource"
    }
   },
-  "Poolabcclient5C6D273F": {
+  "DemoUserPool2604democlient10CA1683": {
    "Type": "AWS::Cognito::UserPoolClient",
    "Properties": {
     "AllowedOAuthFlows": [
@@ -149,11 +239,11 @@
      "COGNITO"
     ],
     "UserPoolId": {
-     "Ref": "PoolD3F588B8"
+     "Ref": "DemoUserPool2604FF82200D"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/Pool/abcclient/Resource"
+    "aws:cdk:path": "ApiStagesLambdaStack/Demo-User-Pool-2604/democlient/Resource"
    }
   },
   "DeploymentStagesAPI12050DE0": {
@@ -165,7 +255,7 @@
     "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Resource"
    }
   },
-  "DeploymentStagesAPIstageinfoCD647400": {
+  "DeploymentStagesAPIauth07F63AF9": {
    "Type": "AWS::ApiGateway::Resource",
    "Properties": {
     "ParentId": {
@@ -174,16 +264,73 @@
       "RootResourceId"
      ]
     },
-    "PathPart": "stage_info",
+    "PathPart": "auth",
     "RestApiId": {
      "Ref": "DeploymentStagesAPI12050DE0"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/stage_info/Resource"
+    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/auth/Resource"
    }
   },
-  "DeploymentStagesAPIstageinfoGET663181DB": {
+  "DeploymentStagesAPIauthGET83F4C61A": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "AWS_IAM",
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:",
+        {
+         "Ref": "AWS::Region"
+        },
+        ":lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "AuthLambdaFunctionEB7081E8",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "DeploymentStagesAPIauth07F63AF9"
+    },
+    "RestApiId": {
+     "Ref": "DeploymentStagesAPI12050DE0"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/auth/GET/Resource"
+   }
+  },
+  "DeploymentStagesAPIphoto3930DBFC": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "DeploymentStagesAPI12050DE0",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "photo",
+    "RestApiId": {
+     "Ref": "DeploymentStagesAPI12050DE0"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/photo/Resource"
+   }
+  },
+  "DeploymentStagesAPIphotoGET2376262A": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "AuthorizationType": "AWS_IAM",
@@ -212,17 +359,134 @@
      }
     },
     "ResourceId": {
-     "Ref": "DeploymentStagesAPIstageinfoCD647400"
+     "Ref": "DeploymentStagesAPIphoto3930DBFC"
     },
     "RestApiId": {
      "Ref": "DeploymentStagesAPI12050DE0"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/stage_info/GET/Resource"
+    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/photo/GET/Resource"
    }
   },
-  "DeploymentStagesAPIfruitsF790CCBE": {
+  "DeploymentStagesAPIphotoPOSTAEDF2D1E": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "AWS_IAM",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:",
+        {
+         "Ref": "AWS::Region"
+        },
+        ":lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "LambdaFunctionBF21E41F",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "DeploymentStagesAPIphoto3930DBFC"
+    },
+    "RestApiId": {
+     "Ref": "DeploymentStagesAPI12050DE0"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/photo/POST/Resource"
+   }
+  },
+  "DeploymentStagesAPIphotoPATCHA3F46AB2": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "AWS_IAM",
+    "HttpMethod": "PATCH",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:",
+        {
+         "Ref": "AWS::Region"
+        },
+        ":lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "LambdaFunctionBF21E41F",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "DeploymentStagesAPIphoto3930DBFC"
+    },
+    "RestApiId": {
+     "Ref": "DeploymentStagesAPI12050DE0"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/photo/PATCH/Resource"
+   }
+  },
+  "DeploymentStagesAPIphotoDELETED9295E7A": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "AWS_IAM",
+    "HttpMethod": "DELETE",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:",
+        {
+         "Ref": "AWS::Region"
+        },
+        ":lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "LambdaFunctionBF21E41F",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "DeploymentStagesAPIphoto3930DBFC"
+    },
+    "RestApiId": {
+     "Ref": "DeploymentStagesAPI12050DE0"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/photo/DELETE/Resource"
+   }
+  },
+  "DeploymentStagesAPIfriends65F24EF4": {
    "Type": "AWS::ApiGateway::Resource",
    "Properties": {
     "ParentId": {
@@ -231,16 +495,16 @@
       "RootResourceId"
      ]
     },
-    "PathPart": "fruits",
+    "PathPart": "friends",
     "RestApiId": {
      "Ref": "DeploymentStagesAPI12050DE0"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/fruits/Resource"
+    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/friends/Resource"
    }
   },
-  "DeploymentStagesAPIfruitsGETA0B78F3E": {
+  "DeploymentStagesAPIfriendsGET22BEAB61": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "AuthorizationType": "AWS_IAM",
@@ -269,17 +533,17 @@
      }
     },
     "ResourceId": {
-     "Ref": "DeploymentStagesAPIfruitsF790CCBE"
+     "Ref": "DeploymentStagesAPIfriends65F24EF4"
     },
     "RestApiId": {
      "Ref": "DeploymentStagesAPI12050DE0"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/fruits/GET/Resource"
+    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/friends/GET/Resource"
    }
   },
-  "DeploymentStagesAPIvegetables881EBF31": {
+  "DeploymentStagesAPIfriend67204F00": {
    "Type": "AWS::ApiGateway::Resource",
    "Properties": {
     "ParentId": {
@@ -288,20 +552,20 @@
       "RootResourceId"
      ]
     },
-    "PathPart": "vegetables",
+    "PathPart": "friend",
     "RestApiId": {
      "Ref": "DeploymentStagesAPI12050DE0"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/vegetables/Resource"
+    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/friend/Resource"
    }
   },
-  "DeploymentStagesAPIvegetablesGET800A4CCB": {
+  "DeploymentStagesAPIfriendPOST91D95051": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
     "AuthorizationType": "AWS_IAM",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "Integration": {
      "IntegrationHttpMethod": "POST",
      "Type": "AWS_PROXY",
@@ -326,32 +590,53 @@
      }
     },
     "ResourceId": {
-     "Ref": "DeploymentStagesAPIvegetables881EBF31"
+     "Ref": "DeploymentStagesAPIfriend67204F00"
     },
     "RestApiId": {
      "Ref": "DeploymentStagesAPI12050DE0"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/vegetables/GET/Resource"
+    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/friend/POST/Resource"
    }
   },
-  "ProdAlias90891B14": {
-   "Type": "AWS::Lambda::Alias",
+  "DeploymentStagesAPIfriendDELETE0D0C4C92": {
+   "Type": "AWS::ApiGateway::Method",
    "Properties": {
-    "FunctionName": {
-     "Ref": "LambdaFunctionBF21E41F"
+    "AuthorizationType": "AWS_IAM",
+    "HttpMethod": "DELETE",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:",
+        {
+         "Ref": "AWS::Region"
+        },
+        ":lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "LambdaFunctionBF21E41F",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
     },
-    "FunctionVersion": {
-     "Fn::GetAtt": [
-      "LambdaFunctionCurrentVersion7D5C86E3ad53e1f78a279144eb9b2225a4d663c7",
-      "Version"
-     ]
+    "ResourceId": {
+     "Ref": "DeploymentStagesAPIfriend67204F00"
     },
-    "Name": "prod"
+    "RestApiId": {
+     "Ref": "DeploymentStagesAPI12050DE0"
+    }
    },
    "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/ProdAlias/Resource"
+    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/friend/DELETE/Resource"
    }
   },
   "ProdApiDeploymentE87EEE6D9d007f9f5123c998536f2a509fd8ac17": {
@@ -362,9 +647,14 @@
     }
    },
    "DependsOn": [
-    "DeploymentStagesAPIfruitsGETA0B78F3E",
-    "DeploymentStagesAPIstageinfoGET663181DB",
-    "DeploymentStagesAPIvegetablesGET800A4CCB"
+    "DeploymentStagesAPIauthGET83F4C61A",
+    "DeploymentStagesAPIfriendDELETE0D0C4C92",
+    "DeploymentStagesAPIfriendPOST91D95051",
+    "DeploymentStagesAPIfriendsGET22BEAB61",
+    "DeploymentStagesAPIphotoDELETED9295E7A",
+    "DeploymentStagesAPIphotoGET2376262A",
+    "DeploymentStagesAPIphotoPATCHA3F46AB2",
+    "DeploymentStagesAPIphotoPOSTAEDF2D1E"
    ],
    "Metadata": {
     "aws:cdk:path": "ApiStagesLambdaStack/ProdApiDeployment/Resource"
@@ -379,30 +669,16 @@
     "RestApiId": {
      "Ref": "DeploymentStagesAPI12050DE0"
     },
-    "StageName": "prod",
-    "Variables": {
-     "lambdaAlias": "prod"
-    }
+    "StageName": "prod"
    },
    "Metadata": {
     "aws:cdk:path": "ApiStagesLambdaStack/ProdApiStage/Resource"
    }
   },
-  "MyCfnPolicyStore": {
-   "Type": "AWS::VerifiedPermissions::PolicyStore",
-   "Properties": {
-    "ValidationSettings": {
-     "Mode": "OFF"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/MyCfnPolicyStore"
-   }
-  },
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02RwW6DMAyGn6X3kG3tLjvSTrtNQ622a5UGl3qEBMVmFUK8+5JAESd//mPnd5ytfNm+yueNulOmyzozeJHDiZWuRZDOg1HNpVRy+OisZnRWHK524R/wNGsrLMA3SCnLDSqKWoJRoGrkcHQGohbjKGh3VkTAJPMYQi73na6B94pAaFdZZCeHbwJfOGdi48IPOBgEy+ujSRmFarFSDHfVB18gzltM1jOG6DqvIXk9krlg4k/gmyujNNM7tMb1zey3ysLSqtSbYBR/4PGKULbLOkjG7TiDuj+x86FmsUlvj41oq3jHV8dtx+tJRlH0YQD7tJNv4c82v4SY+c4yNiCPU/wHA2nDLs0BAAA="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02QTU/DMAyGf8vuaYCNC8dtiBuiGuI8ZakpXvNR1Y6mqsp/J0k76Ol9/NqxHW/l0/ZZPm7UjSrddJXBi5w+WelOJOs8GWUvjZLTW3Ca0Ttx/HZrrmGwSJSiKFBZOZ28gZwoWnuDeix1haKg3VkRAZPcZ0mxPATdAR8UgdC+dcheTl8EQ+29yU//+A5Hg+B4nZqdKFSPrWK4qTEtAsT7HssuCyb1YdBQZt2DpWDmd+Af32RroVfojR/tMm8VpRu15W2BGP/7lY9lF12bCz4C94HXY6Kox9TdPezkS7r/5kqI1RAcowV5mvUXATCxwpkBAAA="
    },
    "Metadata": {
     "aws:cdk:path": "ApiStagesLambdaStack/CDKMetadata/Default"
@@ -426,6 +702,18 @@
       ".amazonaws.com"
      ]
     ]
+   }
+  },
+  "UserPoolId": {
+   "Description": "User Pool ID",
+   "Value": {
+    "Ref": "DemoUserPool2604FF82200D"
+   }
+  },
+  "UserPoolClientId": {
+   "Description": "UserPool Client ID",
+   "Value": {
+    "Ref": "DemoUserPool2604democlient10CA1683"
    }
   }
  },
