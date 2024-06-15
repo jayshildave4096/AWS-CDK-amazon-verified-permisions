@@ -4,3 +4,5 @@ types-setuptools
 boto3
 click
 python-jose
+jwt
+requests

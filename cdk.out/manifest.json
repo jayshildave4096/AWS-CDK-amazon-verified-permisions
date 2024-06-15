@@ -1,6 +1,114 @@
 {
   "version": "36.0.0",
   "artifacts": {
+    "AVPStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "AVPStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "AVPStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://465283423899/us-east-1",
+      "properties": {
+        "templateFile": "AVPStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::465283423899:role/cdk-hnb659fds-deploy-role-465283423899-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::465283423899:role/cdk-hnb659fds-cfn-exec-role-465283423899-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-465283423899-us-east-1/9dec287ddf4f3f32c57735443790de1401e3a1b39acb8ba964fced953075a675.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "AVPStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::465283423899:role/cdk-hnb659fds-lookup-role-465283423899-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "AVPStack.assets"
+      ],
+      "metadata": {
+        "/AVPStack/MyPolicyStore": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyPolicyStore"
+          }
+        ],
+        "/AVPStack/CreatePhotoTemplate": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CreatePhotoTemplate"
+          }
+        ],
+        "/AVPStack/CreatePhotoTemplatePolicy": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CreatePhotoTemplatePolicy"
+          }
+        ],
+        "/AVPStack/ReadPhotoTemplate": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ReadPhotoTemplate"
+          }
+        ],
+        "/AVPStack/ReadPhotoTemplatePolicy": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ReadPhotoTemplatePolicy"
+          }
+        ],
+        "/AVPStack/DeletePhotoStaticPolicy": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DeletePhotoStaticPolicy"
+          }
+        ],
+        "/AVPStack/MyCfnIdentitySource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyCfnIdentitySource"
+          }
+        ],
+        "/AVPStack/PolicyStoreId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PolicyStoreId"
+          }
+        ],
+        "/AVPStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/AVPStack/Exports/Output{\"Fn::GetAtt\":[\"MyPolicyStore\",\"PolicyStoreId\"]}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputFnGetAttMyPolicyStorePolicyStoreId4734E28C"
+          }
+        ],
+        "/AVPStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/AVPStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "AVPStack"
+    },
     "ApiStagesLambdaStack.assets": {
       "type": "cdk:asset-manifest",
       "properties": {
@@ -18,7 +126,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::465283423899:role/cdk-hnb659fds-deploy-role-465283423899-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::465283423899:role/cdk-hnb659fds-cfn-exec-role-465283423899-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-465283423899-us-east-1/34db048b4e1aff7640069dd71bc9123b34ece27a943ae2b38dd090078f5beb34.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-465283423899-us-east-1/8e7295f73c05ae8aa7e4cea2edb047931ac01504a0e0a7e483277c7de663b85f.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -31,6 +139,7 @@
         }
       },
       "dependencies": [
+        "AVPStack",
         "ApiStagesLambdaStack.assets"
       ],
       "metadata": {
@@ -70,106 +179,70 @@
             "data": "AuthLambdaFunctionEB7081E8"
           }
         ],
+        "/ApiStagesLambdaStack/AuthLambdaFunction/ApiStagesLambdaStackTestAuthorizerCD014594:Permissions": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthLambdaFunctionApiStagesLambdaStackTestAuthorizerCD014594PermissionsFC00F291"
+          }
+        ],
         "/ApiStagesLambdaStack/AuthLambdaFunction/InvokeFcyXBRX02EWa52GlF+ECQiCzDt0fdRUDi4mo4foC5aU=": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AuthLambdaFunctionInvokeFcyXBRX02EWa52GlFECQiCzDt0fdRUDi4mo4foC5aUB003517C"
           }
         ],
-        "/ApiStagesLambdaStack/Demo-User-Pool-2604/Resource": [
+        "/ApiStagesLambdaStack/TestApiAPI/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DemoUserPool2604FF82200D"
+            "data": "TestApiAPI5499688D"
           }
         ],
-        "/ApiStagesLambdaStack/Demo-User-Pool-2604/democlient/Resource": [
+        "/ApiStagesLambdaStack/TestApiAPI/Default/auth/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DemoUserPool2604democlient10CA1683"
+            "data": "TestApiAPIauth810FF5D1"
           }
         ],
-        "/ApiStagesLambdaStack/DeploymentStagesAPI/Resource": [
+        "/ApiStagesLambdaStack/TestApiAPI/Default/auth/GET/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeploymentStagesAPI12050DE0"
+            "data": "TestApiAPIauthGET16B66809"
           }
         ],
-        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/auth/Resource": [
+        "/ApiStagesLambdaStack/TestApiAPI/Default/photo/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeploymentStagesAPIauth07F63AF9"
+            "data": "TestApiAPIphoto46A3B506"
           }
         ],
-        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/auth/GET/Resource": [
+        "/ApiStagesLambdaStack/TestApiAPI/Default/photo/GET/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeploymentStagesAPIauthGET83F4C61A"
+            "data": "TestApiAPIphotoGET15C6925E"
           }
         ],
-        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/photo/Resource": [
+        "/ApiStagesLambdaStack/TestApiAPI/Default/photo/POST/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeploymentStagesAPIphoto3930DBFC"
+            "data": "TestApiAPIphotoPOST4C63BB2B"
           }
         ],
-        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/photo/GET/Resource": [
+        "/ApiStagesLambdaStack/TestApiAPI/Default/photo/DELETE/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeploymentStagesAPIphotoGET2376262A"
+            "data": "TestApiAPIphotoDELETE957EBB3E"
           }
         ],
-        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/photo/POST/Resource": [
+        "/ApiStagesLambdaStack/TestAuthorizer/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeploymentStagesAPIphotoPOSTAEDF2D1E"
-          }
-        ],
-        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/photo/PATCH/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "DeploymentStagesAPIphotoPATCHA3F46AB2"
-          }
-        ],
-        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/photo/DELETE/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "DeploymentStagesAPIphotoDELETED9295E7A"
-          }
-        ],
-        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/friends/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "DeploymentStagesAPIfriends65F24EF4"
-          }
-        ],
-        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/friends/GET/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "DeploymentStagesAPIfriendsGET22BEAB61"
-          }
-        ],
-        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/friend/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "DeploymentStagesAPIfriend67204F00"
-          }
-        ],
-        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/friend/POST/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "DeploymentStagesAPIfriendPOST91D95051"
-          }
-        ],
-        "/ApiStagesLambdaStack/DeploymentStagesAPI/Default/friend/DELETE/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "DeploymentStagesAPIfriendDELETE0D0C4C92"
+            "data": "TestAuthorizerED87F045"
           }
         ],
         "/ApiStagesLambdaStack/ProdApiDeployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "ProdApiDeploymentE87EEE6D9d007f9f5123c998536f2a509fd8ac17"
+            "data": "ProdApiDeploymentE87EEE6D6eefacd49cb46371a1cbaa08286b093e"
           }
         ],
         "/ApiStagesLambdaStack/ProdApiStage/Resource": [
@@ -182,18 +255,6 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "ApiHostUrl"
-          }
-        ],
-        "/ApiStagesLambdaStack/UserPoolId": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "UserPoolId"
-          }
-        ],
-        "/ApiStagesLambdaStack/UserPoolClientId": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "UserPoolClientId"
           }
         ],
         "/ApiStagesLambdaStack/CDKMetadata/Default": [
@@ -216,90 +277,6 @@
         ]
       },
       "displayName": "ApiStagesLambdaStack"
-    },
-    "AVPStack.assets": {
-      "type": "cdk:asset-manifest",
-      "properties": {
-        "file": "AVPStack.assets.json",
-        "requiresBootstrapStackVersion": 6,
-        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
-      }
-    },
-    "AVPStack": {
-      "type": "aws:cloudformation:stack",
-      "environment": "aws://465283423899/us-east-1",
-      "properties": {
-        "templateFile": "AVPStack.template.json",
-        "terminationProtection": false,
-        "validateOnSynth": false,
-        "assumeRoleArn": "arn:${AWS::Partition}:iam::465283423899:role/cdk-hnb659fds-deploy-role-465283423899-us-east-1",
-        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::465283423899:role/cdk-hnb659fds-cfn-exec-role-465283423899-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-465283423899-us-east-1/25563a4021715c5b80f882678bb89138f62d84bbd04f499ab8b93a4000a0eef5.json",
-        "requiresBootstrapStackVersion": 6,
-        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
-        "additionalDependencies": [
-          "AVPStack.assets"
-        ],
-        "lookupRole": {
-          "arn": "arn:${AWS::Partition}:iam::465283423899:role/cdk-hnb659fds-lookup-role-465283423899-us-east-1",
-          "requiresBootstrapStackVersion": 8,
-          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
-        }
-      },
-      "dependencies": [
-        "AVPStack.assets"
-      ],
-      "metadata": {
-        "/AVPStack/MyPolicyStore": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "MyPolicyStore"
-          }
-        ],
-        "/AVPStack/MyCfnPolicyTemplate": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "MyCfnPolicyTemplate"
-          }
-        ],
-        "/AVPStack/AdminPolicy": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "AdminPolicy"
-          }
-        ],
-        "/AVPStack/DeletePhotoPolicy": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "DeletePhotoPolicy"
-          }
-        ],
-        "/AVPStack/PolicyStoreId": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PolicyStoreId"
-          }
-        ],
-        "/AVPStack/CDKMetadata/Default": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CDKMetadata"
-          }
-        ],
-        "/AVPStack/BootstrapVersion": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "BootstrapVersion"
-          }
-        ],
-        "/AVPStack/CheckBootstrapVersion": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CheckBootstrapVersion"
-          }
-        ]
-      },
-      "displayName": "AVPStack"
     },
     "Tree": {
       "type": "cdk:tree",

@@ -39,7 +39,7 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-465283423899-us-east-1",
-     "S3Key": "4d61be4d0fd2bcd174d120a3d084383c48343c07287e2171f588f05aac66c307.zip"
+     "S3Key": "d9bbf1927505469cf097ce422b2245abcfce5addac68a8d369efe6db904fdf7d.zip"
     },
     "Handler": "lambda-handler.handler",
     "Role": {
@@ -55,7 +55,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "ApiStagesLambdaStack/LambdaFunction/Resource",
-    "aws:asset:path": "asset.4d61be4d0fd2bcd174d120a3d084383c48343c07287e2171f588f05aac66c307",
+    "aws:asset:path": "asset.d9bbf1927505469cf097ce422b2245abcfce5addac68a8d369efe6db904fdf7d",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Code"
    }
@@ -139,7 +139,14 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-465283423899-us-east-1",
-     "S3Key": "564edfe3ac1705f906cbbc68f9a4bec3fe70f8d6aa8a893784156243894e050b.zip"
+     "S3Key": "1a7cd5670194d297571df3f8d669a479f63f6df8429884b9c75b1ae5af90740a.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "POLICY_STORE_ID": {
+       "Fn::ImportValue": "AVPStack:ExportsOutputFnGetAttMyPolicyStorePolicyStoreId4734E28C"
+      }
+     }
     },
     "Handler": "auth-lambda-handler.handler",
     "Role": {
@@ -156,9 +163,40 @@
    ],
    "Metadata": {
     "aws:cdk:path": "ApiStagesLambdaStack/AuthLambdaFunction/Resource",
-    "aws:asset:path": "asset.564edfe3ac1705f906cbbc68f9a4bec3fe70f8d6aa8a893784156243894e050b",
+    "aws:asset:path": "asset.1a7cd5670194d297571df3f8d669a479f63f6df8429884b9c75b1ae5af90740a",
     "aws:asset:is-bundled": true,
     "aws:asset:property": "Code"
+   }
+  },
+  "AuthLambdaFunctionApiStagesLambdaStackTestAuthorizerCD014594PermissionsFC00F291": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthLambdaFunctionEB7081E8",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:465283423899:",
+       {
+        "Ref": "TestApiAPI5499688D"
+       },
+       "/authorizers/",
+       {
+        "Ref": "TestAuthorizerED87F045"
+       }
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "ApiStagesLambdaStack/AuthLambdaFunction/ApiStagesLambdaStackTestAuthorizerCD014594:Permissions"
    }
   },
   "AuthLambdaFunctionInvokeFcyXBRX02EWa52GlFECQiCzDt0fdRUDi4mo4foC5aUB003517C": {
@@ -177,106 +215,37 @@
     "aws:cdk:path": "ApiStagesLambdaStack/AuthLambdaFunction/InvokeFcyXBRX02EWa52GlF+ECQiCzDt0fdRUDi4mo4foC5aU="
    }
   },
-  "DemoUserPool2604FF82200D": {
-   "Type": "AWS::Cognito::UserPool",
-   "Properties": {
-    "AccountRecoverySetting": {
-     "RecoveryMechanisms": [
-      {
-       "Name": "verified_phone_number",
-       "Priority": 1
-      },
-      {
-       "Name": "verified_email",
-       "Priority": 2
-      }
-     ]
-    },
-    "AdminCreateUserConfig": {
-     "AllowAdminCreateUserOnly": false
-    },
-    "EmailVerificationMessage": "The verification code to your new account is {####}",
-    "EmailVerificationSubject": "Verify your new account",
-    "SmsVerificationMessage": "The verification code to your new account is {####}",
-    "VerificationMessageTemplate": {
-     "DefaultEmailOption": "CONFIRM_WITH_CODE",
-     "EmailMessage": "The verification code to your new account is {####}",
-     "EmailSubject": "Verify your new account",
-     "SmsMessage": "The verification code to your new account is {####}"
-    }
-   },
-   "UpdateReplacePolicy": "Retain",
-   "DeletionPolicy": "Retain",
-   "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/Demo-User-Pool-2604/Resource"
-   }
-  },
-  "DemoUserPool2604democlient10CA1683": {
-   "Type": "AWS::Cognito::UserPoolClient",
-   "Properties": {
-    "AllowedOAuthFlows": [
-     "implicit",
-     "code"
-    ],
-    "AllowedOAuthFlowsUserPoolClient": true,
-    "AllowedOAuthScopes": [
-     "profile",
-     "phone",
-     "email",
-     "openid",
-     "aws.cognito.signin.user.admin"
-    ],
-    "CallbackURLs": [
-     "https://example.com"
-    ],
-    "ExplicitAuthFlows": [
-     "ALLOW_USER_PASSWORD_AUTH",
-     "ALLOW_ADMIN_USER_PASSWORD_AUTH",
-     "ALLOW_USER_SRP_AUTH",
-     "ALLOW_REFRESH_TOKEN_AUTH"
-    ],
-    "SupportedIdentityProviders": [
-     "COGNITO"
-    ],
-    "UserPoolId": {
-     "Ref": "DemoUserPool2604FF82200D"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/Demo-User-Pool-2604/democlient/Resource"
-   }
-  },
-  "DeploymentStagesAPI12050DE0": {
+  "TestApiAPI5499688D": {
    "Type": "AWS::ApiGateway::RestApi",
    "Properties": {
-    "Name": "MultiStageApi"
+    "Name": "TestApi"
    },
    "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Resource"
+    "aws:cdk:path": "ApiStagesLambdaStack/TestApiAPI/Resource"
    }
   },
-  "DeploymentStagesAPIauth07F63AF9": {
+  "TestApiAPIauth810FF5D1": {
    "Type": "AWS::ApiGateway::Resource",
    "Properties": {
     "ParentId": {
      "Fn::GetAtt": [
-      "DeploymentStagesAPI12050DE0",
+      "TestApiAPI5499688D",
       "RootResourceId"
      ]
     },
     "PathPart": "auth",
     "RestApiId": {
-     "Ref": "DeploymentStagesAPI12050DE0"
+     "Ref": "TestApiAPI5499688D"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/auth/Resource"
+    "aws:cdk:path": "ApiStagesLambdaStack/TestApiAPI/Default/auth/Resource"
    }
   },
-  "DeploymentStagesAPIauthGET83F4C61A": {
+  "TestApiAPIauthGET16B66809": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
-    "AuthorizationType": "AWS_IAM",
+    "AuthorizationType": "NONE",
     "HttpMethod": "GET",
     "Integration": {
      "IntegrationHttpMethod": "POST",
@@ -302,38 +271,41 @@
      }
     },
     "ResourceId": {
-     "Ref": "DeploymentStagesAPIauth07F63AF9"
+     "Ref": "TestApiAPIauth810FF5D1"
     },
     "RestApiId": {
-     "Ref": "DeploymentStagesAPI12050DE0"
+     "Ref": "TestApiAPI5499688D"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/auth/GET/Resource"
+    "aws:cdk:path": "ApiStagesLambdaStack/TestApiAPI/Default/auth/GET/Resource"
    }
   },
-  "DeploymentStagesAPIphoto3930DBFC": {
+  "TestApiAPIphoto46A3B506": {
    "Type": "AWS::ApiGateway::Resource",
    "Properties": {
     "ParentId": {
      "Fn::GetAtt": [
-      "DeploymentStagesAPI12050DE0",
+      "TestApiAPI5499688D",
       "RootResourceId"
      ]
     },
     "PathPart": "photo",
     "RestApiId": {
-     "Ref": "DeploymentStagesAPI12050DE0"
+     "Ref": "TestApiAPI5499688D"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/photo/Resource"
+    "aws:cdk:path": "ApiStagesLambdaStack/TestApiAPI/Default/photo/Resource"
    }
   },
-  "DeploymentStagesAPIphotoGET2376262A": {
+  "TestApiAPIphotoGET15C6925E": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
-    "AuthorizationType": "AWS_IAM",
+    "AuthorizationType": "CUSTOM",
+    "AuthorizerId": {
+     "Ref": "TestAuthorizerED87F045"
+    },
     "HttpMethod": "GET",
     "Integration": {
      "IntegrationHttpMethod": "POST",
@@ -359,20 +331,23 @@
      }
     },
     "ResourceId": {
-     "Ref": "DeploymentStagesAPIphoto3930DBFC"
+     "Ref": "TestApiAPIphoto46A3B506"
     },
     "RestApiId": {
-     "Ref": "DeploymentStagesAPI12050DE0"
+     "Ref": "TestApiAPI5499688D"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/photo/GET/Resource"
+    "aws:cdk:path": "ApiStagesLambdaStack/TestApiAPI/Default/photo/GET/Resource"
    }
   },
-  "DeploymentStagesAPIphotoPOSTAEDF2D1E": {
+  "TestApiAPIphotoPOST4C63BB2B": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
-    "AuthorizationType": "AWS_IAM",
+    "AuthorizationType": "CUSTOM",
+    "AuthorizerId": {
+     "Ref": "TestAuthorizerED87F045"
+    },
     "HttpMethod": "POST",
     "Integration": {
      "IntegrationHttpMethod": "POST",
@@ -398,59 +373,23 @@
      }
     },
     "ResourceId": {
-     "Ref": "DeploymentStagesAPIphoto3930DBFC"
+     "Ref": "TestApiAPIphoto46A3B506"
     },
     "RestApiId": {
-     "Ref": "DeploymentStagesAPI12050DE0"
+     "Ref": "TestApiAPI5499688D"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/photo/POST/Resource"
+    "aws:cdk:path": "ApiStagesLambdaStack/TestApiAPI/Default/photo/POST/Resource"
    }
   },
-  "DeploymentStagesAPIphotoPATCHA3F46AB2": {
+  "TestApiAPIphotoDELETE957EBB3E": {
    "Type": "AWS::ApiGateway::Method",
    "Properties": {
-    "AuthorizationType": "AWS_IAM",
-    "HttpMethod": "PATCH",
-    "Integration": {
-     "IntegrationHttpMethod": "POST",
-     "Type": "AWS_PROXY",
-     "Uri": {
-      "Fn::Join": [
-       "",
-       [
-        "arn:aws:apigateway:",
-        {
-         "Ref": "AWS::Region"
-        },
-        ":lambda:path/2015-03-31/functions/",
-        {
-         "Fn::GetAtt": [
-          "LambdaFunctionBF21E41F",
-          "Arn"
-         ]
-        },
-        "/invocations"
-       ]
-      ]
-     }
+    "AuthorizationType": "CUSTOM",
+    "AuthorizerId": {
+     "Ref": "TestAuthorizerED87F045"
     },
-    "ResourceId": {
-     "Ref": "DeploymentStagesAPIphoto3930DBFC"
-    },
-    "RestApiId": {
-     "Ref": "DeploymentStagesAPI12050DE0"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/photo/PATCH/Resource"
-   }
-  },
-  "DeploymentStagesAPIphotoDELETED9295E7A": {
-   "Type": "AWS::ApiGateway::Method",
-   "Properties": {
-    "AuthorizationType": "AWS_IAM",
     "HttpMethod": "DELETE",
     "Integration": {
      "IntegrationHttpMethod": "POST",
@@ -476,185 +415,92 @@
      }
     },
     "ResourceId": {
-     "Ref": "DeploymentStagesAPIphoto3930DBFC"
+     "Ref": "TestApiAPIphoto46A3B506"
     },
     "RestApiId": {
-     "Ref": "DeploymentStagesAPI12050DE0"
+     "Ref": "TestApiAPI5499688D"
     }
    },
    "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/photo/DELETE/Resource"
+    "aws:cdk:path": "ApiStagesLambdaStack/TestApiAPI/Default/photo/DELETE/Resource"
    }
   },
-  "DeploymentStagesAPIfriends65F24EF4": {
-   "Type": "AWS::ApiGateway::Resource",
+  "TestAuthorizerED87F045": {
+   "Type": "AWS::ApiGateway::Authorizer",
    "Properties": {
-    "ParentId": {
-     "Fn::GetAtt": [
-      "DeploymentStagesAPI12050DE0",
-      "RootResourceId"
+    "AuthorizerResultTtlInSeconds": 0,
+    "AuthorizerUri": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           ":",
+           {
+            "Fn::GetAtt": [
+             "AuthLambdaFunctionEB7081E8",
+             "Arn"
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       ":apigateway:",
+       {
+        "Fn::Select": [
+         3,
+         {
+          "Fn::Split": [
+           ":",
+           {
+            "Fn::GetAtt": [
+             "AuthLambdaFunctionEB7081E8",
+             "Arn"
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       ":lambda:path/2015-03-31/functions/",
+       {
+        "Fn::GetAtt": [
+         "AuthLambdaFunctionEB7081E8",
+         "Arn"
+        ]
+       },
+       "/invocations"
+      ]
      ]
     },
-    "PathPart": "friends",
+    "IdentitySource": "method.request.header.Auth-Token",
+    "Name": "ApiStagesLambdaStackTestAuthorizerCD014594",
     "RestApiId": {
-     "Ref": "DeploymentStagesAPI12050DE0"
-    }
+     "Ref": "TestApiAPI5499688D"
+    },
+    "Type": "REQUEST"
    },
    "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/friends/Resource"
+    "aws:cdk:path": "ApiStagesLambdaStack/TestAuthorizer/Resource"
    }
   },
-  "DeploymentStagesAPIfriendsGET22BEAB61": {
-   "Type": "AWS::ApiGateway::Method",
-   "Properties": {
-    "AuthorizationType": "AWS_IAM",
-    "HttpMethod": "GET",
-    "Integration": {
-     "IntegrationHttpMethod": "POST",
-     "Type": "AWS_PROXY",
-     "Uri": {
-      "Fn::Join": [
-       "",
-       [
-        "arn:aws:apigateway:",
-        {
-         "Ref": "AWS::Region"
-        },
-        ":lambda:path/2015-03-31/functions/",
-        {
-         "Fn::GetAtt": [
-          "LambdaFunctionBF21E41F",
-          "Arn"
-         ]
-        },
-        "/invocations"
-       ]
-      ]
-     }
-    },
-    "ResourceId": {
-     "Ref": "DeploymentStagesAPIfriends65F24EF4"
-    },
-    "RestApiId": {
-     "Ref": "DeploymentStagesAPI12050DE0"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/friends/GET/Resource"
-   }
-  },
-  "DeploymentStagesAPIfriend67204F00": {
-   "Type": "AWS::ApiGateway::Resource",
-   "Properties": {
-    "ParentId": {
-     "Fn::GetAtt": [
-      "DeploymentStagesAPI12050DE0",
-      "RootResourceId"
-     ]
-    },
-    "PathPart": "friend",
-    "RestApiId": {
-     "Ref": "DeploymentStagesAPI12050DE0"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/friend/Resource"
-   }
-  },
-  "DeploymentStagesAPIfriendPOST91D95051": {
-   "Type": "AWS::ApiGateway::Method",
-   "Properties": {
-    "AuthorizationType": "AWS_IAM",
-    "HttpMethod": "POST",
-    "Integration": {
-     "IntegrationHttpMethod": "POST",
-     "Type": "AWS_PROXY",
-     "Uri": {
-      "Fn::Join": [
-       "",
-       [
-        "arn:aws:apigateway:",
-        {
-         "Ref": "AWS::Region"
-        },
-        ":lambda:path/2015-03-31/functions/",
-        {
-         "Fn::GetAtt": [
-          "LambdaFunctionBF21E41F",
-          "Arn"
-         ]
-        },
-        "/invocations"
-       ]
-      ]
-     }
-    },
-    "ResourceId": {
-     "Ref": "DeploymentStagesAPIfriend67204F00"
-    },
-    "RestApiId": {
-     "Ref": "DeploymentStagesAPI12050DE0"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/friend/POST/Resource"
-   }
-  },
-  "DeploymentStagesAPIfriendDELETE0D0C4C92": {
-   "Type": "AWS::ApiGateway::Method",
-   "Properties": {
-    "AuthorizationType": "AWS_IAM",
-    "HttpMethod": "DELETE",
-    "Integration": {
-     "IntegrationHttpMethod": "POST",
-     "Type": "AWS_PROXY",
-     "Uri": {
-      "Fn::Join": [
-       "",
-       [
-        "arn:aws:apigateway:",
-        {
-         "Ref": "AWS::Region"
-        },
-        ":lambda:path/2015-03-31/functions/",
-        {
-         "Fn::GetAtt": [
-          "LambdaFunctionBF21E41F",
-          "Arn"
-         ]
-        },
-        "/invocations"
-       ]
-      ]
-     }
-    },
-    "ResourceId": {
-     "Ref": "DeploymentStagesAPIfriend67204F00"
-    },
-    "RestApiId": {
-     "Ref": "DeploymentStagesAPI12050DE0"
-    }
-   },
-   "Metadata": {
-    "aws:cdk:path": "ApiStagesLambdaStack/DeploymentStagesAPI/Default/friend/DELETE/Resource"
-   }
-  },
-  "ProdApiDeploymentE87EEE6D9d007f9f5123c998536f2a509fd8ac17": {
+  "ProdApiDeploymentE87EEE6D6eefacd49cb46371a1cbaa08286b093e": {
    "Type": "AWS::ApiGateway::Deployment",
    "Properties": {
     "RestApiId": {
-     "Ref": "DeploymentStagesAPI12050DE0"
+     "Ref": "TestApiAPI5499688D"
     }
    },
    "DependsOn": [
-    "DeploymentStagesAPIauthGET83F4C61A",
-    "DeploymentStagesAPIfriendDELETE0D0C4C92",
-    "DeploymentStagesAPIfriendPOST91D95051",
-    "DeploymentStagesAPIfriendsGET22BEAB61",
-    "DeploymentStagesAPIphotoDELETED9295E7A",
-    "DeploymentStagesAPIphotoGET2376262A",
-    "DeploymentStagesAPIphotoPATCHA3F46AB2",
-    "DeploymentStagesAPIphotoPOSTAEDF2D1E"
+    "TestApiAPIauthGET16B66809",
+    "TestApiAPIphotoDELETE957EBB3E",
+    "TestApiAPIphotoGET15C6925E",
+    "TestApiAPIphotoPOST4C63BB2B"
    ],
    "Metadata": {
     "aws:cdk:path": "ApiStagesLambdaStack/ProdApiDeployment/Resource"
@@ -664,10 +510,10 @@
    "Type": "AWS::ApiGateway::Stage",
    "Properties": {
     "DeploymentId": {
-     "Ref": "ProdApiDeploymentE87EEE6D9d007f9f5123c998536f2a509fd8ac17"
+     "Ref": "ProdApiDeploymentE87EEE6D6eefacd49cb46371a1cbaa08286b093e"
     },
     "RestApiId": {
-     "Ref": "DeploymentStagesAPI12050DE0"
+     "Ref": "TestApiAPI5499688D"
     },
     "StageName": "prod"
    },
@@ -678,7 +524,7 @@
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/02QTU/DMAyGf8vuaYCNC8dtiBuiGuI8ZakpXvNR1Y6mqsp/J0k76Ol9/NqxHW/l0/ZZPm7UjSrddJXBi5w+WelOJOs8GWUvjZLTW3Ca0Ttx/HZrrmGwSJSiKFBZOZ28gZwoWnuDeix1haKg3VkRAZPcZ0mxPATdAR8UgdC+dcheTl8EQ+29yU//+A5Hg+B4nZqdKFSPrWK4qTEtAsT7HssuCyb1YdBQZt2DpWDmd+Af32RroVfojR/tMm8VpRu15W2BGP/7lY9lF12bCz4C94HXY6Kox9TdPezkS7r/5kqI1RAcowV5mvUXATCxwpkBAAA="
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/01Qy07DMBD8lt4dQymquLYgbogofEDlOkvYxo/gXasKUf4d2w0ip3nseHblB7l93Mv7jbpSpdu+MniW0wcr3YtknSaj7LlVcnqNTjN6J54/3ZrXECwSJTULVFZOjTeQBwVrb1CPJVfYLGh3UkTAJA8ZkpbHqHvgoyIQasBOMVzVmIqA+DBg6VpoQh+DhpL9E0vgxt+Av3ybrYU18B3z65hUwB8IebZSLzAYP1pwnAcrlf6gK92FzPP/vnJ4dtF1OfAeeYi8PmMW9Zg2uLudfJLb/eZCiFWIjtGCbG74C0LEXih5AQAA"
    },
    "Metadata": {
     "aws:cdk:path": "ApiStagesLambdaStack/CDKMetadata/Default"
@@ -693,7 +539,7 @@
      "",
      [
       {
-       "Ref": "DeploymentStagesAPI12050DE0"
+       "Ref": "TestApiAPI5499688D"
       },
       ".execute-api.",
       {
@@ -702,18 +548,6 @@
       ".amazonaws.com"
      ]
     ]
-   }
-  },
-  "UserPoolId": {
-   "Description": "User Pool ID",
-   "Value": {
-    "Ref": "DemoUserPool2604FF82200D"
-   }
-  },
-  "UserPoolClientId": {
-   "Description": "UserPool Client ID",
-   "Value": {
-    "Ref": "DemoUserPool2604democlient10CA1683"
    }
   }
  },
