@@ -58,6 +58,7 @@ def main(endpoint, username, password, uid, cid):
     # create_user(username, password,cid)
     # confirm_signup(username,uid)
 
+    # FETCH TOKEN FROM COGNITO
     token = login(username, password, uid, cid)
 
     response = requests.get(
@@ -77,9 +78,10 @@ def main(endpoint, username, password, uid, cid):
         params={"userpool_id": uid, "client_id": cid, "resource": "sunset.jpg"},
         headers={"Auth-Token": token},
     ).json()
-    print(response)
-    print(response1)
-    print(response2)
+
+    print("GET:", response)
+    print("POST", response1)
+    print("DELETE", response2)
 
 
 if __name__ == "__main__":
